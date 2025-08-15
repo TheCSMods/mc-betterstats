@@ -1,0 +1,57 @@
+plugins
+{
+	id 'dev.architectury.loom'           version '1.10-SNAPSHOT' apply false
+	id 'architectury-plugin'             version '3.4-SNAPSHOT'
+	id 'com.github.johnrengelman.shadow' version '8.1.1'         apply false
+}
+
+architectury { minecraft = project["minecraft.version"] }
+
+//code to execute for all projects
+allprojects
+{
+	//set project's group and version
+	group = project["maven.group"]
+	version = "${project["mod.version"]}+${it.properties["loom.platform"] ?: "common"}-${project["minecraft.version"]}"
+}
+
+//code to execute for all subprojects
+subprojects
+{
+	//skip the ':buildSrc' project
+	if(it.path.toLowerCase(Locale.ENGLISH) == ":buildsrc")
+		return;
+
+	//apply these plugins to each subproject
+	apply plugin: 'dev.architectury.loom'
+	apply plugin: 'architectury-plugin'
+	apply plugin: 'maven-publish'
+
+	//set the compiled jar file's base name
+	base { archivesName = "${project["mod.id"]}" }
+
+	//common dependencies used by all subprojects
+	dependencies
+	{
+		minecraft "net.minecraft:minecraft:${project["minecraft.version"]}"
+		mappings loom.officialMojangMappings()
+	}
+
+	java
+	{
+		//configure javadoc to be quiet about certain warnings, and to use UTF-8
+		javadoc.options.addStringOption('Xdoclint:none', '-quiet')
+		javadoc.options.encoding = 'UTF-8'
+
+		//include sources and java-doc jar files when compiling
+		withSourcesJar()
+		withJavadocJar()
+
+		//configure the java compatibility version
+		sourceCompatibility = JavaVersion.VERSION_21
+		targetCompatibility = JavaVersion.VERSION_21
+	}
+
+	//configure all Java compile tasks to target Java 21
+	tasks.withType(JavaCompile).configureEach { it.options.release = 21 }
+}

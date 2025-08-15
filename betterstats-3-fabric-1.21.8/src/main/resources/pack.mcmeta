@@ -1,7 +1,0 @@
-{
-	"pack":
-	{
-		"description": { "text": "${project.properties.mod_id} resources" },
-		"pack_format": ${project.properties.pack_mcmeta_format}
-	}
-}

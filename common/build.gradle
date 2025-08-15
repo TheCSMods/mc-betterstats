@@ -1,0 +1,34 @@
+architectury { common parent["enabled_platforms"].split(',') }
+
+repositories
+{
+	maven { url = "https://maven.shedaniel.me/" }
+	maven { url = "https://maven.terraformersmc.com/releases/" }
+}
+
+dependencies
+{
+	// We depend on Fabric Loader here to use the Fabric @Environment annotations,
+	// which get remapped to the correct annotations on each platform.
+	// Do NOT use other classes from Fabric Loader.
+	modImplementation "net.fabricmc:fabric-loader:${parent["fabric.loader_version"]}"
+	modImplementation "dev.architectury:architectury:${parent["architectury.version"]}"
+
+	// Roughly Enough Items
+	modCompileOnly "me.shedaniel:RoughlyEnoughItems-fabric:${parent["rei.version"]}"
+
+	//compile-time jar files in jarjar-excluded
+	modCompileOnlyApi(fileTree(dir: 'src/main/resources/META-INF/jarjar-excluded', include: '*.jar'))
+}
+
+processResources
+{
+	//include the gradle properties file but renamed as 'mod-id.properties'
+	from("../gradle.properties") { rename { "${parent["mod.id"]}.properties" } }
+
+	//include the license file as well. necessary for legal reasons
+	from("../LICENSE.txt")
+
+	//expand root project properties to potential mixin files
+	filesMatching(["*.json", "*.mcmeta"]) { expand(properties: parent.properties) }
+}

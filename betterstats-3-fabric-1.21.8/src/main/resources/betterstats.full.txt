@@ -1,9 +1,0 @@
-/**
- * Note:
- * This file's presence enables additional features in the mod.
- * This intends to reward contributors and supporters.
- * 
- * If your copy of this mod's jar file contains this file;
- * Thank you so much for your continued support and contribution! It always means a lot!
- */
-♥

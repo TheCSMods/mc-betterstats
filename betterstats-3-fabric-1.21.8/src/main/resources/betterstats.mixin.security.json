@@ -1,8 +1,0 @@
-{
-	"required": true,
-	"minVersion": "0.8",
-	"package": "io.github.thecsdev.betterstats.mixin.security",
-	"compatibilityLevel": "JAVA_21",
-	"mixins": ["MixinModLoader"],
-	"injectors": { "defaultRequire": 1 }
-}

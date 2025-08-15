@@ -1,0 +1,33 @@
+{
+	"schemaVersion": 1,
+	"id":            "${properties["mod.id"]}",
+	"version":       "${properties["mod.version"]}",
+	"name":          "${properties["mod.name"]}",
+	"description":   "${properties["mod.description"]}",
+	"authors":       ["${properties["mod.author"]}"],
+	"license":       "${properties["mod.license"]}",
+	"icon":          "assets/${properties["mod.id"]}/icon.png",
+	"contact":
+	{
+		"homepage": "${properties["mod.link.homepage"]}",
+		"sources":  "${properties["mod.link.sources"]}",
+		"issues":   "${properties["mod.link.issues"]}"
+	},
+	"environment":   "*",
+	"entrypoints":
+	{
+		"client": ["${properties["fabric.json.entrypoints.client"]}"],
+		"server": ["${properties["fabric.json.entrypoints.client"]}"],
+		"modmenu": ["${properties["fabric.json.entrypoints.modmenu"]}"]
+	},
+	"mixins": ${properties["mixins"]},
+	"depends":
+	{
+		"java":         "${properties["fabric.json.depends.java"]}",
+		"minecraft":    "${properties["fabric.json.depends.minecraft"]}",
+		"fabricloader": "${properties["fabric.json.depends.fabricloader"]}",
+		"fabric-api":   "${properties["fabric.json.depends.fabric-api"]}",
+		"architectury": "${properties["fabric.json.depends.architectury"]}",
+		"tcdcommons":   "${properties["fabric.json.depends.tcdcommons"]}"
+	}
+}

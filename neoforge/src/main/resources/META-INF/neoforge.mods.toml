@@ -1,0 +1,43 @@
+modLoader        = "javafml"
+loaderVersion    = "${properties["net.toml.loaderVersion"]}"
+license          = "${properties["mod.license"]}"
+issueTrackerURL  = "${properties["mod.link.issues"]}"
+
+[[mods]]
+modId       = "${properties["mod.id"]}"
+version     = "${properties["mod.version"]}"
+displayName = "${properties["mod.name"]}"
+description = "${properties["mod.description"]}."
+authors     = "${properties["mod.author"]}"
+logoFile    = "assets/${properties["mod.id"]}/icon.png"
+
+[[dependencies.${properties["mod.id"]}]]
+modId        = "neoforge"
+type         = "required"
+versionRange = "${properties["neo.toml.dependencies.neoforge"]}"
+ordering     = "NONE"
+side         = "BOTH"
+
+[[dependencies.${properties["mod.id"]}]]
+modId        = "minecraft"
+type         = "required"
+versionRange = "${properties["neo.toml.dependencies.minecraft"]}"
+ordering     = "NONE"
+side         = "BOTH"
+
+[[dependencies.${properties["mod.id"]}]]
+modId        = "architectury"
+type         = "required"
+versionRange = "${properties["neo.toml.dependencies.architectury"]}"
+ordering     = "AFTER"
+side         = "BOTH"
+
+[[dependencies.${properties["mod.id"]}]]
+modId        = "tcdcommons"
+type         = "required"
+versionRange = "${properties["neo.toml.dependencies.tcdcommons"]}"
+ordering     = "AFTER"
+side         = "BOTH"
+
+# Mixin declarations are dynamically inserted below:
+${properties["mixins"]}
