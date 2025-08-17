@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id":            "${properties["mod.id"]}",
-	"version":       "${properties["mod.version"]}",
+	"version":       "${properties["mod.version"]}+fabric-${properties["minecraft.version"]}",
 	"name":          "${properties["mod.name"]}",
 	"description":   "${properties["mod.description"]}",
 	"authors":       ["${properties["mod.author"]}"],

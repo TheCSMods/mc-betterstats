@@ -5,7 +5,7 @@ issueTrackerURL  = "${properties["mod.link.issues"]}"
 
 [[mods]]
 modId       = "${properties["mod.id"]}"
-version     = "${properties["mod.version"]}"
+version     = "${properties["mod.version"]}+neoforge-${properties["minecraft.version"]}"
 displayName = "${properties["mod.name"]}"
 description = "${properties["mod.description"]}."
 authors     = "${properties["mod.author"]}"
